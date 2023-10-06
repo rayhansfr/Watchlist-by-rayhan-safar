@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New List</title>
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/logo.png')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='src/input.css')}}">
+</head>
+<body class="font-poppins grid grid-cols-1">
+    <div class="fixed w-screen z-50">
+        <nav style="background-color: #5e43f3">
+            <div class="flex items-center justify-between px-4 lg:px-0 py-4 md:mx-20">
+                <div class="text-white font-bold text-2xl">WatchList</div>
+                <div class="hidden w-full md:flex md:items-center md:w-auto">
+                    <ul class="hidden md:flex items-center space-x-4">
+                        {% for comp in menu %}
+                            <li>
+                                <a href="{{ comp.link }}" class="navbar-items active:font-bold ">{{ comp.text }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- <div class="flex md:hidden fill-white">
+                    <button onclick="toggleOpen()">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24">
+                            {% if isOpen %}
+                                <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                            {% else %}
+                                <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
+                            {% endif %}
+                        </svg>
+                    </button>
+                </div> -->
+            </div>
+            <!-- <div class="{% if isOpen %}hidden{% else %}block{% endif %}" style="background-color: slategray">
+                <ul>
+                    {% for comp in menu %}
+                        <li class="py-1">
+                            <a href="{{ comp.link }}" class="navbar-items active:font-bold">{{ comp.text }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div> -->
+        </nav>
+    </div>
+    <!-- navbar -->
+    <div class="mt-16 grid min-h-screen sm:grid-cols-2 content-center" style="background: rgb(94,67,243);
+    background: linear-gradient(180deg, rgba(94,67,243,1) 0%, rgba(217,213,238,1) 97%);
+    ">
+        <div class="content-center sm:col-start-1">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative" style="color: #F5F5FA;">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-6xl lg:text-6xl">Add Your Watchlist Film or Video</h1>
+                <p class="text-lg font-normallg:text-xl sm:px-16 lg:px-4">Save it Now, Watch it later</p>
+            </div>
+        </div>
+        <!-- Form -->
+        <div class="glomoprhism grid grid-cols-1 place-content-center w-1/2 mx-auto py-4 mb-20">
+            <form action="{{url_for('addList')}}" enctype="multipart/form-data" method="post">
+                <div class="px-20 ">
+                    <label class="block mt-2 mb-2 text-xl font-bold" style="color: #F5F5FA;" for="title">Title</label>
+                    <input class="block mb-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white" name="title" id="title" type="text" required placeholder="Insert content title...">
+                    
+                    <label for="desc" class="block mb-2 text-xl font-bold" style="color: #F5F5FA;">Description</label>
+                    <textarea id="desc" rows="4" name="desc" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Leave a Description..." required></textarea>
+    
+                    <label class="block mt-2 mb-2 text-xl font-bold" style="color: #F5F5FA;" for="image_content">Photo</label>
+                    <input class="w-full text-sm mb-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white" name="image_content" id="image_content" type="file" required>
+                    
+                    <button onclick="" type="submit" class="inline-flex items-center px-3 py-2 mt-2 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        Save
+                        <svg class="h-8 w-8 ml-2 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />  <polyline points="17 21 17 13 7 13 7 21" />  <polyline points="7 3 7 8 15 8" /></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <section>
+            <div class="footer">
+                <p>Copyright &copy; Rayhan Safar (2023) All Rights Reserved.</p>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- flowbite -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+    <script>
+        function toggleOpen() {
+            fetch('/toggle')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isOpen) {
+                        document.querySelector('.flex.md\\:hidden.fill-white button svg path').setAttribute('d', "M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z");
+                    } else {
+                        document.querySelector('.flex.md\\:hidden.fill-white button svg path').setAttribute('d', "M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z");
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

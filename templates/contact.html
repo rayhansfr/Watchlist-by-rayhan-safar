@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/logo.png')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='src/input.css')}}">
+</head>
+<body class="bgfont-poppins grid grid-cols-1">
+    <div class="fixed w-screen z-50">
+        <nav style="background-color: #5e43f3">
+            <div class="flex items-center justify-between px-4 lg:px-0 py-4 md:mx-20">
+                <div class="text-white font-bold text-2xl">WatchList</div>
+                <div class="hidden w-full md:flex md:items-center md:w-auto">
+                    <ul class="hidden md:flex items-center space-x-4">
+                        {% for comp in menu %}
+                            <li>
+                                <a href="{{ comp.link }}" class="navbar-items active:font-bold ">{{ comp.text }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- <div class="flex md:hidden fill-white">
+                    <button onclick="toggleOpen">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24">
+                            {% if isOpen %}
+                                <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                            {% else %}
+                                <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
+                            {% endif %}
+                        </svg>
+                    </button>
+                </div> -->
+            </div>
+            <!-- <div class="{% if isOpen %}hidden{% else %}block{% endif %}" style="background-color: slategray">
+                <ul>
+                    {% for comp in menu %}
+                        <li class="py-1">
+                            <a href="{{ comp.link }}" class="navbar-items active:font-bold">{{ comp.text }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div> -->
+        </nav>
+    </div>
+    <!-- navbar -->
+
+    <div class="min-h-screen grid content-center" style="background: rgb(94,67,243);
+    background: linear-gradient(180deg, rgba(94,67,243,1) 0%, rgba(217,213,238,1) 97%);
+    ">
+        <div class="glomoprhism w-1/2 mx-auto mt-20 mb-4">
+            <div class="py-8 px-4 mx-auto text-center lg:py-16 z-10 relative" style="color: #F5F5FA;">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-6xl lg:text-6xl">GET IN TOUCH</h1>
+                <p class="mb-8 text-lg font-normallg:text-xl sm:px-16 lg:px-4">Rayhan Safar Putra Dwiliano</p>
+            </div>
+            <div class="mx-auto grid place-content-center grid-cols-2">
+                <a target="_blank" href="https://www.instagram.com/rayhansfr/" class="flex justify-center mx-auto px-3 py-4 my-1 text-sm items-center font-medium text-center text-white">
+                    <svg class="h-48 w-48 text-blue-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/rayhan-safar-putra-dwiliano-62497324b/" class="flex justify-center mx-auto px-3 py-4 my-1 items-center text-sm font-medium text-center text-white">
+                    <svg class="h-48 w-48 text-blue-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />  <rect x="2" y="9" width="4" height="12" />  <circle cx="4" cy="4" r="2" /></svg>
+                </a>
+            </div>
+        </div>
+        <section>
+            <div class="footer absolute bottom-0">
+                <p>Copyright &copy; Rayhan Safar (2023) All Rights Reserved.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleOpen() {
+            fetch('/toggle')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isOpen) {
+                        document.querySelector('.flex.md\\:hidden.fill-white button svg path').setAttribute('d', "M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z");
+                    } else {
+                        document.querySelector('.flex.md\\:hidden.fill-white button svg path').setAttribute('d', "M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z");
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
